@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maturity Date Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -44,27 +45,30 @@
             box-sizing: border-box;
         }
         button {
-            background-color: #007bff;
-            border: none;
-            color: #ffffff;
             padding: 12px 20px;
             text-align: center;
             text-decoration: none;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
             font-size: 16px;
             border-radius: 6px;
             cursor: pointer;
             margin: 5px;
             transition: background-color 0.3s;
+            color: #ffffff;
+            border: none;
         }
-        button:hover {
+        button.calculate {
+            background-color: #007bff;
+        }
+        button.calculate:hover {
             background-color: #0056b3;
         }
-        .clear-button {
-            background-color: #6c757d;
+        button.clear-button {
+            background-color: #d61111;
         }
-        .clear-button:hover {
-            background-color: #5a6268;
+        button.clear-button:hover {
+            background-color: #ff0000;
         }
         .result {
             margin-top: 20px;
@@ -81,8 +85,12 @@
             <label for="openingDate">Opening Date:</label>
             <input type="date" id="openingDate" name="openingDate" required>
             <br>
-            <button type="button" onclick="calculateMaturityDate()">Calculate Maturity Date</button>
-            <button type="button" class="clear-button" onclick="clearFields()">Clear</button>
+            <button type="button" class="calculate" onclick="calculateMaturityDate()">
+                <i class="fas fa-calendar-alt"></i> <span style="margin-left: 10px;">Calculate Maturity Date</span>
+            </button>
+            <button type="button" class="clear-button" onclick="clearFields()">
+                <i class="fas fa-eraser"></i> <span style="margin-left: 10px;">Clear</span>
+            </button>
         </form>
         <div class="result" id="result">
             <p id="maturityDate"></p>
