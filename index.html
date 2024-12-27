@@ -1,328 +1,244 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RD Plan Overview</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-color: #3b82f6;
-            --secondary-color: #1d4ed8;
-            --background-color: #f3f4f6;
-            --card-color: #ffffff;
-            --text-color: #1f2937;
-            --border-color: #e5e7eb;
-        }
+<html><head><base href="." />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RD Plan Details</title>
+<link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/6550/6550893.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #1a237e;
+  --secondary: #0d47a1;
+  --accent: #00c853;
+  --light: #ffffff;
+  --dark: #121212;
+  --card-bg: rgba(255, 255, 255, 0.08);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-        body {
-            background-color: var(--background-color);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            color: var(--text-color);
-            font-size: 14px;
-        }
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, var(--dark), var(--primary));
+  color: var(--light);
+  min-height: 100vh;
+  font-size: 12px;
+  line-height: 1.6;
+}
 
-        .calculator-container {
-            background-color: var(--card-color);
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 400px;
-        }
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
 
-        h1 {
-            color: var(--primary-color);
-            text-align: center;
-            margin-bottom: 1rem;
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
 
-        .input-group {
-            margin-bottom: 1rem;
-        }
+.header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, #60efff, #00ff87);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
 
-        label {
-            display: block;
-            margin-bottom: 0.25rem;
-            color: var(--text-color);
-            font-weight: 500;
-            font-size: 0.8rem;
-        }
+.content-section {
+  background: var(--card-bg);
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
 
-        input {
-            width: 100%;
-            padding: 0.5rem;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            font-size: 0.9rem;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
+.section-title {
+  font-size: 1.2rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
 
-        input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
+.feature-list {
+  list-style: none;
+  padding-left: 1rem;
+}
 
-        .result-table {
-            width: 100%;
-            margin-top: 1rem;
-            border-collapse: collapse;
-            font-size: 0.8rem;
-        }
+.feature-list li {
+  margin-bottom: 0.8rem;
+  position: relative;
+  padding-left: 1.2rem;
+}
 
-        .result-table th, .result-table td {
-            padding: 0.5rem;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color);
-        }
+.feature-list li:before {
+  content: "•";
+  color: var(--accent);
+  position: absolute;
+  left: 0;
+}
 
-        .result-table th {
-            font-weight: 600;
-            background-color: #f9fafb;
-        }
+.highlight {
+  color: #00ff87;
+  font-weight: 500;
+}
 
-        .button-group {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
+.note {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  border-left: 3px solid var(--accent);
+  margin: 1rem 0;
+  border-radius: 0 8px 8px 0;
+}
 
-        .copy-btn, .clear-btn {
-            flex: 1;
-            padding: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.1s ease;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
 
-        .clear-btn {
-            background-color: #ef4444;
-        }
+th, td {
+  padding: 0.8rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
 
-        .copy-btn:hover, .clear-btn:hover {
-            filter: brightness(110%);
-        }
+th {
+  background: rgba(255, 255, 255, 0.05);
+  font-weight: 600;
+}
 
-        .copy-btn:active, .clear-btn:active {
-            transform: translateY(1px);
-        }
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .content-section {
+    padding: 1rem;
+  }
+}
 
-        .copy-btn i, .clear-btn i {
-            margin-right: 0.25rem;
-            font-size: 0.8rem;
-        }
+.search-container {
+  margin-bottom: 2rem;
+}
 
-        .toast {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #323232;
-            color: white;
-            padding: 0.5rem 0.75rem;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            opacity: 0;
-            transform: translateY(100%);
-            transition: all 0.3s ease;
-            z-index: 1000;
-            font-size: 0.8rem;
-        }
+#searchInput {
+  width: 100%;
+  padding: 0.8rem 1.2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
+  color: var(--light);
+  font-size: 0.9rem;
+}
 
-        .toast.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .toast i {
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 480px) {
-            .calculator-container {
-                padding: 1rem;
-            }
-        }
-    </style>
+#searchInput:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+</style>
 </head>
 <body>
-    <div class="calculator-container">
-        <h1><i class="fas fa-calculator"></i> RD Plan Overview</h1>
-        <div class="input-group">
-            <label for="openingDate">Opening Date</label>
-            <input type="date" id="openingDate" oninput="calculateMaturity()">
-        </div>
-        <div class="input-group">
-            <label for="monthlyDeposit">Monthly Deposit Amount (₹)</label>
-            <input type="number" id="monthlyDeposit" oninput="calculateMaturity()">
-        </div>
-        <div class="input-group">
-            <label for="interestRate">Interest Rate (%)</label>
-            <input type="number" id="interestRate" value="6.7" step="0.1" oninput="calculateMaturity()">
-        </div>
-        
-        <table class="result-table" id="resultTable" style="display: none;">
-            <tr>
-                <th>Detail</th>
-                <th>Value</th>
-            </tr>
-            <tr>
-                <td>Monthly Deposit</td>
-                <td id="monthlyDepositResult"></td>
-            </tr>
-            <tr>
-                <td>Interest Rate</td>
-                <td id="interestRateResult"></td>
-            </tr>
-            <tr>
-                <td>Opening Date</td>
-                <td id="openingDateResult"></td>
-            </tr>
-            <tr>
-                <td>Maturity Date</td>
-                <td id="maturityDate"></td>
-            </tr>
-            <tr>
-                <td>Pre-mature Closure Date (3 years)</td>
-                <td id="preMatureDate"></td>
-            </tr>
-            <tr>
-                <td>Total Deposit</td>
-                <td id="totalDeposit"></td>
-            </tr>
-            <tr>
-                <td>Interest Earned</td>
-                <td id="interestEarned"></td>
-            </tr>
-            <tr>
-                <td>Total Maturity Value</td>
-                <td id="maturityValue"></td>
-            </tr>
-        </table>
-        
-        <div class="button-group" id="buttonGroup" style="display: none;">
-            <button class="copy-btn" onclick="copyResults()" title="Copy Results">
-                <i class="fas fa-copy"></i> <span>Copy</span>
-            </button>
-            <button class="clear-btn" onclick="clearCalculator()" title="Clear">
-                <i class="fas fa-trash"></i> <span>Clear</span>
-            </button>
-        </div>
-    </div>
+<div class="container">
+  <header class="header">
+    <h1>Post office RD</h1>
+  </header>
 
-    <div class="toast" id="toast"></div>
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search in content...">
+  </div>
 
-    <script>
-        function calculateMaturity() {
-            const openingDate = new Date(document.getElementById('openingDate').value);
-            const monthlyDeposit = parseFloat(document.getElementById('monthlyDeposit').value);
-            const interestRate = parseFloat(document.getElementById('interestRate').value) / 100;
+  <div class="content-section">
+    <h2 class="section-title">Current Interest Rate</h2>
+    <p>From 01.01.2024: <span class="highlight">6.7% per annum</span> (quarterly compounded)</p>
+  </div>
 
-            if (isNaN(monthlyDeposit) || !openingDate || !document.getElementById('openingDate').value) {
-                document.getElementById('resultTable').style.display = 'none';
-                document.getElementById('buttonGroup').style.display = 'none';
-                return;
-            }
+  <div class="content-section">
+    <h2 class="section-title">Account Opening</h2>
+    <ul class="feature-list">
+      <li>Minimum amount: ₹100/- per month</li>
+      <li>Additional deposits in multiples of ₹10/-</li>
+      <li>No maximum limit</li>
+    </ul>
+  </div>
 
-            const maturityDate = new Date(openingDate);
-            maturityDate.setFullYear(maturityDate.getFullYear() + 5);
+  <div class="content-section">
+    <h2 class="section-title">Who Can Open?</h2>
+    <ul class="feature-list">
+      <li>Single adult</li>
+      <li>Joint Account (up to 3 adults)</li>
+      <li>Guardian on behalf of minor</li>
+      <li>Guardian on behalf of person of unsound mind</li>
+      <li>Minor above 10 years in own name</li>
+    </ul>
+    <div class="note">Note: Any number of accounts can be opened</div>
+  </div>
 
-            const preMatureDate = new Date(openingDate);
-            preMatureDate.setFullYear(preMatureDate.getFullYear() + 3);
+  <div class="content-section">
+    <h2 class="section-title">Deposits & Defaults</h2>
+    <ul class="feature-list">
+      <li>Account can be opened by cash/cheque</li>
+      <li>Default fee: ₹1 per ₹100 denomination per month</li>
+      <li>Account becomes discontinued after 4 regular defaults</li>
+      <li>Revival possible within two months of 4th default</li>
+    </ul>
+  </div>
 
-            const totalDeposit = monthlyDeposit * 12 * 5;
+  <div class="content-section">
+    <h2 class="section-title">Advance Deposits & Loans</h2>
+    <ul class="feature-list">
+      <li>Advance deposits up to 5 years possible</li>
+      <li>Loan facility: Up to 50% of balance after 12 installments</li>
+      <li>Loan interest: 2% + RD interest rate</li>
+    </ul>
+  </div>
 
-            const quarterlyRate = interestRate / 4;
-            let totalAmount = 0;
-            
-            for (let i = 0; i < 60; i++) {
-                let monthlyAmount = monthlyDeposit;
-                const remainingQuarters = Math.floor((59 - i) / 3);
-                for (let j = 0; j < remainingQuarters; j++) {
-                    monthlyAmount *= (1 + quarterlyRate);
-                }
-                totalAmount += monthlyAmount;
-            }
+  <div class="content-section">
+    <h2 class="section-title">Maturity & Closure</h2>
+    <ul class="feature-list">
+      <li>Maturity period: 5 years (60 monthly deposits)</li>
+      <li>Premature closure possible after 3 years</li>
+      <li>Extension possible for another 5 years</li>
+    </ul>
+  </div>
+</div>
 
-            const interestEarned = totalAmount - totalDeposit;
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const searchInput = document.getElementById('searchInput');
+  const contentSections = document.querySelectorAll('.content-section');
 
-            document.getElementById('monthlyDepositResult').textContent = formatCurrency(monthlyDeposit);
-            document.getElementById('interestRateResult').textContent = (interestRate * 100).toFixed(1) + '%';
-            document.getElementById('openingDateResult').textContent = formatDate(openingDate);
-            document.getElementById('maturityDate').textContent = formatDate(maturityDate);
-            document.getElementById('preMatureDate').textContent = formatDate(preMatureDate);
-            document.getElementById('totalDeposit').textContent = formatCurrency(totalDeposit);
-            document.getElementById('interestEarned').textContent = formatCurrency(interestEarned);
-            document.getElementById('maturityValue').textContent = formatCurrency(totalAmount);
-
-            document.getElementById('resultTable').style.display = 'table';
-            document.getElementById('buttonGroup').style.display = 'flex';
-        }
-
-        function formatDate(date) {
-            const day = date.getDate().toString().padStart(2, '0');
-            const month = date.toLocaleString('default', { month: 'short' });
-            const year = date.getFullYear();
-            return `${day}-${month}-${year}`;
-        }
-
-        function formatCurrency(amount) {
-            return '₹' + amount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        }
-
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            toast.innerHTML = message;
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
-
-        function copyResults() {
-            const table = document.getElementById('resultTable');
-            let resultText = '';
-            for (let row of table.rows) {
-                resultText += row.cells[0].textContent + '\t' + row.cells[1].textContent + '\n';
-            }
-
-            navigator.clipboard.writeText(resultText.trim())
-                .then(() => showToast('<i class="fas fa-check-circle"></i> Results copied to clipboard!'))
-                .catch(err => showToast('<i class="fas fa-exclamation-circle"></i> Failed to copy results'));
-        }
-
-        function clearCalculator() {
-            document.getElementById('openingDate').value = '';
-            document.getElementById('monthlyDeposit').value = '';
-            document.getElementById('interestRate').value = '6.7';
-            document.getElementById('resultTable').style.display = 'none';
-            document.getElementById('buttonGroup').style.display = 'none';
-            showToast('<i class="fas fa-check-circle"></i> Calculator cleared');
-        }
-    </script>
-</body>
-</html>
+  searchInput.addEventListener('keyup', function(e) {
+    const searchText = e.target.value.toLowerCase();
+    
+    contentSections.forEach(section => {
+      const content = section.textContent.toLowerCase();
+      
+      if (content.includes(searchText)) {
+        section.style.display = 'block';
+        section.style.opacity = '1';
+        section.style.transform = 'translateY(0)';
+      } else {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+          section.style.display = 'none';
+        }, 300);
+      }
+    });
+  });
+});
+</script>
+</body></html>
