@@ -1,5 +1,6 @@
-
-<html><head><base href="." />
+<html>
+<head>
+<base href="." />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RD Plan Overview</title>
@@ -7,12 +8,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --primary: #1a237e;
+  --primary: #1a73e8; /* Updated to a lighter blue */
   --secondary: #0d47a1;
-  --accent: #00c853;
-  --light: #ffffff;
-  --dark: #121212;
-  --card-bg: rgba(255, 255, 255, 0.08);
+  --accent: #00c853; /* Green accent */
+  --light: #ffffff; /* White background */
+  --dark: #f5f5f5; /* Light gray for dark areas */
+  --text-dark: #121212; /* Dark text for light theme */
+  --card-bg: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -24,8 +26,8 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background: linear-gradient(135deg, var(--dark), var(--primary));
-  color: var(--light);
+  background: var(--dark); /* Light gray background */
+  color: var(--text-dark); /* Dark text */
   min-height: 100vh;
   font-size: 12px;
   line-height: 1.6;
@@ -45,7 +47,7 @@ body {
 .header h1 {
   font-size: 2rem;
   font-weight: 700;
-  background: linear-gradient(45deg, #60efff, #00ff87);
+  background: linear-gradient(45deg, #1a73e8, #00c853); /* Updated gradient */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 0.8rem;
@@ -54,17 +56,18 @@ body {
 }
 
 .content-section {
-  background: var(--card-bg);
+  background: var(--card-bg); /* Semi-transparent white */
   border-radius: 15px;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Light border */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .section-title {
   font-size: 1.2rem;
-  color: var(--accent);
+  color: var(--accent); /* Green accent */
   margin-bottom: 1rem;
   font-weight: 600;
 }
@@ -82,22 +85,23 @@ body {
 
 .feature-list li:before {
   content: "•";
-  color: var(--accent);
+  color: var(--accent); /* Green accent */
   position: absolute;
   left: 0;
 }
 
 .highlight {
-  color: #00ff87;
+  color: #00c853; /* Green accent */
   font-weight: 500;
 }
 
 .note {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 200, 83, 0.1); /* Light green background */
   padding: 1rem;
-  border-left: 3px solid var(--accent);
+  border-left: 3px solid var(--accent); /* Green accent */
   margin: 1rem 0;
   border-radius: 0 8px 8px 0;
+  color: var(--text-dark); /* Dark text */
 }
 
 table {
@@ -109,11 +113,11 @@ table {
 th, td {
   padding: 0.8rem;
   text-align: left;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Light border */
 }
 
 th {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.05); /* Light gray background */
   font-weight: 600;
 }
 
@@ -138,16 +142,16 @@ th {
 #searchInput {
   width: 100%;
   padding: 0.8rem 1.2rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--light); /* White background */
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Light border */
   border-radius: 25px;
-  color: var(--light);
+  color: var(--text-dark); /* Dark text */
   font-size: 0.9rem;
 }
 
 #searchInput:focus {
   outline: none;
-  border-color: var(--accent);
+  border-color: var(--accent); /* Green accent */
 }
 </style>
 </head>
@@ -242,4 +246,5 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
-</body></html>
+</body>
+</html>
